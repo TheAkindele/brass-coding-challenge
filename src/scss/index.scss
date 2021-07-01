@@ -1,0 +1,13 @@
+@import "./App.scss";
+@import "./mixins.scss";
+@import "./screens.scss";
+@import "./button.scss";
+@import "./input.scss";
+@import "./loader.scss";
+@import "./modal.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

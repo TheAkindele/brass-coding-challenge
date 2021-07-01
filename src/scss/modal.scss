@@ -1,0 +1,62 @@
+@import "./mixins.scss";
+@import "./screens.scss";
+
+.modal-cont {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  @include flex(column, center, center);
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.62);
+  overflow-y: scroll;
+  box-sizing: border-box;
+  @include screen("inbetween") {
+    width: 100%;
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  .content-cont {
+    width: auto;
+    // min-width: 30%;
+    height: auto;
+    z-index: 100;
+    background-color: white;
+    padding: 1rem 1.5rem;
+    @include flex(column, center, nill);
+    color: black;
+    border-radius: 1.5rem;
+    @include screen("inbetween") {
+      width: 80%;
+    }
+
+    .close-sign {
+      @include flex(row, flex-end, flex-end);
+      margin-bottom: 1rem;
+      padding: 0.8rem 0.7rem;
+
+      #close-modal {
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+        border: 1px solid #d3d1d1;
+        padding: 0.5rem;
+        border-radius: 6px;
+      }
+    }
+    .modal {
+      width: 100%;
+      place-self: center;
+
+      &.verify-modal {
+        padding: 1rem;
+        @include flex(column, center, center);
+      }
+    }
+  }
+}

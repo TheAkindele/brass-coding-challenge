@@ -1,0 +1,6 @@
+@import "./mixins.scss";
+@import "./screens.scss";
+
+.loader {
+  @include flex(row, center, center);
+}

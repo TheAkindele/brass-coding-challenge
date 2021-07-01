@@ -1,0 +1,7 @@
+@import "./screens.scss";
+@import "./mixins.scss";
+
+.App {
+  color: red;
+  @include flex(row, center, center);
+}
