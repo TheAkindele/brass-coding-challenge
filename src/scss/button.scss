@@ -1,13 +1,23 @@
 @import "./mixins.scss";
 
 .button {
-  min-width: 10rem;
-  padding: 1rem 1.5rem;
+  max-height: 3.125rem;
+  padding: 0.75rem 1.375rem;
+  border-radius: 5px;
+  white-space: nowrap;
+
+  width: 10rem;
+  width: 23.437rem;
   cursor: pointer;
-  background-color: rgb(92, 202, 245);
-  border-radius: 4px;
+  background: #3e7eee;
   border: none;
   outline: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  text-align: center;
+  color: #ffffff;
   @include screen("inbetween") {
     min-width: 0;
   }
@@ -21,97 +31,6 @@
     opacity: 50%;
     cursor: default;
     pointer-events: none;
-  }
-
-  &.big-blue-btn {
-    // max-width: 23rem;
-    width: 75%;
-    height: 3rem;
-    background-color: #0d3dde;
-    border-radius: 47px;
-    color: #ffffff;
-    font-size: 1.1rem;
-    font-weight: normal;
-    margin-bottom: 2rem;
-    padding: 0;
-    @include screen("inbetween") {
-      // width: 100%;
-      height: 2rem;
-      font-size: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-  }
-  &.big-white-btn {
-    // max-width: 23rem;
-    width: 75%;
-    height: 3rem;
-    background-color: white;
-    border: 1px solid #0d3dde;
-    border-radius: 47px;
-    color: #0d3dde;
-    font-size: 1.1rem;
-    font-weight: normal;
-    padding: 0;
-    @include screen("inbetween") {
-      // width: 100%;
-      height: 2rem;
-      font-size: 0.8rem;
-    }
-  }
-  &.small-white-btn {
-    width: 10rem;
-    // height: 3.3rem;
-    height: 100%;
-    background-color: white;
-    border: 1px solid #0d3dde;
-    border-radius: 47px;
-    color: #0d3dde;
-    font-size: 1rem;
-    font-weight: normal;
-    padding: 0;
-    @include screen("inbetween") {
-      width: 47%;
-      height: 100%;
-      font-size: 0.8rem;
-    }
-  }
-  &.small-blue-btn {
-    width: 10rem;
-    // height: 3.3rem;
-    height: 100%;
-    background-color: #0d3dde;
-    border: 1px solid #0d3dde;
-    border-radius: 47px;
-    color: white;
-    font-size: 1rem;
-    font-weight: normal;
-    padding: 0;
-    @include screen("inbetween") {
-      width: 47%;
-      height: 100%;
-      font-size: 0.8rem;
-    }
-  }
-  &.webcam-capture-btn {
-    width: 40%;
-    min-width: 0;
-    // width: 5rem;
-    height: 2.5rem;
-    padding: 0 0.3rem;
-    background-color: #0d3dde;
-    border: 1px solid #0d3dde;
-    color: white;
-    // margin-right: 1rem;
-    @include screen("inbetween") {
-    }
-  }
-  &.webcam-delete-btn {
-    min-width: 0;
-    background-color: white;
-    border: 1px solid #0d3dde;
-    width: 40%;
-    height: 2.5rem;
-    padding: 0 0.3rem;
   }
 }
 #small-btn-left {

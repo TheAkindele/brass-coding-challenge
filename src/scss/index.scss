@@ -5,9 +5,19 @@
 @import "./input.scss";
 @import "./loader.scss";
 @import "./modal.scss";
+@import "./card.scss";
+@import "./sidebar.scss";
+@import "./dashboard.scss";
+@import "./table.scss";
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.loader {
+  @include flex(row, center, center);
+  margin: 0 auto;
 }

@@ -1,0 +1,132 @@
+@import "./screens.scss";
+@import "./mixins.scss";
+
+.table-cont {
+  box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  .table-scroll {
+    overflow: auto;
+  }
+  .table {
+    width: 100%;
+
+    .name-avatar {
+      height: 1.625rem;
+      width: 1.625rem;
+      border-radius: 0.812rem;
+      background-color: #cae6ff;
+      color: #115b9b;
+      margin-right: 0.937rem;
+      &.p2p-avi {
+        color: #fff;
+        margin-right: 0.537rem;
+        background-color: #ba7632;
+        text-transform: uppercase;
+        &.bg-owned {
+          background-color: #106403;
+        }
+        &.bg-online {
+          background-color: #008753;
+        }
+        &.bg-offline {
+          background-color: #979797;
+        }
+        &.bg-away {
+          background-color: #f1b52a;
+        }
+      }
+    }
+    thead {
+      tr {
+        height: 4.06rem;
+        &.p2p-row {
+          background-color: #fff;
+          th {
+            font-weight: 400;
+            color: #a2a2a2;
+          }
+        }
+        th {
+          font-weight: 600;
+          color: #000;
+          //border: 1px solid green;
+        }
+      }
+    }
+    tbody {
+      tr {
+        height: 3.75rem;
+        &.p2p-row {
+          background-color: #fff;
+        }
+      }
+      tr:nth-child(odd) {
+        background-color: #f4f4f4;
+        &.p2p-row {
+          background-color: #fff;
+        }
+      }
+    }
+    th {
+      text-align: left;
+      padding-left: 2.81rem;
+    }
+    td {
+      padding-left: 2.81rem;
+      //border: 1px solid red;
+    }
+    @include screen("small") {
+      th {
+        padding: 0.937rem;
+        white-space: nowrap;
+      }
+      td {
+        padding: 0.937rem;
+        white-space: nowrap;
+      }
+    }
+  }
+  .empty-cont {
+    padding: 2.5rem;
+    background: #e0dede;
+    @include flex(column, center, center);
+    #paper {
+      min-width: 5rem;
+      max-width: 10rem;
+      height: 10rem;
+    }
+    .empty-text {
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: bolder;
+    }
+  }
+  .pagination {
+    background-color: #fff;
+    padding: 2rem 3rem 2rem 0;
+    display: flex;
+    justify-content: flex-end;
+    .pages {
+      .page {
+        margin: 0 0.09rem;
+        border-radius: 2px;
+        text-align: center;
+        padding: 0.15rem 0.3rem;
+        color: #c7c7c7;
+        // border: 1px solid $text-chocolate;
+        &.ellipse {
+          margin: 0;
+          border: 0;
+          padding: 0.15rem 0;
+        }
+        &.active {
+          background-color: red;
+          color: #fff;
+        }
+      }
+      img {
+        cursor: pointer;
+      }
+    }
+  }
+}

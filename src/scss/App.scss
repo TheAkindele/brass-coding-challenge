@@ -2,6 +2,62 @@
 @import "./mixins.scss";
 
 .App {
-  color: red;
-  @include flex(row, center, center);
+}
+
+.layout {
+  @include flex(row, nill, nill);
+  position: relative;
+  .log-sider {
+    width: 21%;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 300;
+    @include screen("inbetween") {
+      display: none;
+    }
+  }
+  .log-content {
+    width: 79%;
+    margin-left: 21%;
+    position: relative;
+    @include screen("inbetween") {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  .small-menu {
+    width: 0%;
+    height: 100vh;
+    overflow-x: hidden;
+    position: fixed;
+    right: -100%;
+    transition: width 2s, height 1s;
+    background: #03180e;
+    color: white;
+    z-index: 100;
+  }
+  .side-open {
+    width: 60%;
+    height: 100vh;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    right: 0;
+    border-left: 1px solid #8397ab;
+  }
+  .side-close {
+    width: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: width 2s;
+  }
 }

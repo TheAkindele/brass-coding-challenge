@@ -1,0 +1,83 @@
+@import "./mixins.scss";
+@import "./screens.scss";
+
+.card-box {
+  @include flex(column, space-between, nill);
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 1px rgba(131, 151, 171, 0.16),
+    0px 4px 6px rgba(131, 151, 171, 0.16);
+  border-radius: 6px;
+  width: 47.5%;
+  height: 10.62rem;
+  @include screen("inbetween") {
+    height: auto;
+    width: 90%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+  &.left-card {
+    margin-right: 5%;
+    @include screen("inbetween") {
+      margin-right: 0;
+    }
+  }
+  p {
+    margin: 0;
+  }
+  .top {
+    @include flex(row, space-between, center);
+    @include screen("inbetween") {
+      margin-bottom: 2.5rem;
+    }
+    .left {
+      #acc {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 1.312rem;
+        color: #1c1335;
+        text-transform: uppercase;
+        @include screen("inbetween") {
+          font-size: 0.5rem;
+          line-height: 1rem;
+        }
+      }
+      #num {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1.312rem;
+        color: #8397ab;
+        @include screen("inbetween") {
+          font-size: 0.5rem;
+          line-height: 1rem;
+        }
+      }
+    }
+    #card-icon {
+      width: 5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+    }
+  }
+  .down {
+    #balance {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 2.25rem;
+      line-height: 3.37rem;
+      color: #1c1335;
+      @include screen("inbetween") {
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+      }
+      span {
+        font-size: 1.1rem;
+        @include screen("inbetween") {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

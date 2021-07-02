@@ -1,0 +1,190 @@
+@import "./mixins.scss";
+@import "./screens.scss";
+
+.dashboard {
+  background: #f4f8fb;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+  @include screen("inbetween") {
+    box-sizing: border-box;
+  }
+  nav {
+    display: none;
+    @include screen("inbetween") {
+      display: block;
+      @include flex(row, space-between, center);
+      padding: 1rem 1.5rem;
+      background-color: #ffffff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      // width: 100%;
+      z-index: 500;
+    }
+    .logo-box {
+      width: 25%;
+      height: 1.5rem;
+      padding: 0.5rem;
+      img {
+        width: 100%;
+        width: 100%;
+      }
+    }
+    .menu-box {
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
+      border: 1px solid black;
+      padding: 0.2rem;
+      border-radius: 6px;
+      @include screen("inbetween") {
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .step1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5rem;
+    // padding: 0 5.62rem;
+    border-left: 1px solid #ece7e7;
+    margin-left: 21%;
+    width: 79%;
+    box-sizing: border-box;
+    padding: 0 5.62rem;
+    z-index: 500;
+    box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.08);
+    background-color: #f8f6f6;
+    @include flex(row, space-between, center);
+    border-bottom: 1px solid rgb(236, 231, 231);
+    @include screen("inbetween") {
+      padding: 1rem 1.5rem;
+      height: auto;
+      position: relative;
+      margin-top: 4.5rem;
+      z-index: 0;
+      width: 100%;
+      margin-left: 0;
+      // top: auto;
+      // left: auto;
+    }
+    p {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.312rem;
+      line-height: 1.937rem;
+      color: #8397ab;
+      margin: 0;
+      @include screen("inbetween") {
+        font-size: 1rem;
+        line-height: 1rem;
+      }
+    }
+    .profile {
+      @include flex(row, nill, center);
+      @include screen("inbetween") {
+        height: 1.8rem;
+        img {
+          height: 100%;
+        }
+      }
+      #avatar {
+        width: 2.5rem;
+        height: 2rem;
+        margin-left: 1rem;
+        @include screen("inbetween") {
+        }
+      }
+    }
+  }
+  .step2 {
+    // background-color: pink;
+    margin-top: 5rem;
+    padding: 2.25rem 5.62rem 1.5rem 5.62rem;
+    @include flex(row, space-between, center);
+    @include screen("inbetween") {
+      @include flex(column, space-around, center);
+      padding: 1.5rem 1rem;
+      margin-top: 0;
+    }
+    .greeting {
+      @include screen("inbetween") {
+        width: 100%;
+        text-align: center;
+      }
+      #welcome {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.5rem;
+        line-height: 2.25rem;
+        color: #1c1335;
+        margin: 0;
+        @include screen("inbetween") {
+          font-size: 1rem;
+        }
+      }
+      #here {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: #1c1335;
+        margin: 0;
+        span {
+          color: #fa4a84;
+          cursor: pointer;
+        }
+        @include screen("inbetween") {
+          font-size: 0.6rem;
+        }
+      }
+    }
+    .dash-btn {
+      width: 10rem;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.312rem;
+      color: #ffffff;
+      margin: 0;
+      border-radius: 4px;
+      @include screen("inbetween") {
+        // width: 80%;
+        margin-top: 1rem;
+        height: auto;
+        padding: 0.6rem 0;
+        font-size: 0.7rem;
+        line-height: 1rem;
+      }
+    }
+  }
+  .step3 {
+    @include flex(row, space-between, nill);
+    padding: 1rem 5.62rem 2rem 5.62rem;
+    @include screen("inbetween") {
+      @include flex(column, space-around, center);
+      padding: 1rem;
+    }
+  }
+  section {
+    border: 1px solid green;
+    padding: 2rem 5.62rem 2rem 5.62rem;
+    margin-bottom: 3rem;
+    @include screen("inbetween") {
+      padding: 1rem;
+    }
+    h3 {
+      margin: 0;
+    }
+  }
+}
