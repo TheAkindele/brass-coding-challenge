@@ -179,12 +179,35 @@
   section {
     border: 1px solid green;
     padding: 2rem 5.62rem 2rem 5.62rem;
+    @include flex(row, space-between, nill);
     margin-bottom: 3rem;
     @include screen("inbetween") {
       padding: 1rem;
+      @include flex(column, center, center);
+    }
+    .form-box {
+      width: 40%;
+      border: 1px solid #ece7e7;
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      @include screen("inbetween") {
+        margin-bottom: 1.5rem;
+        width: 100%;
+      }
+    }
+    .history {
+      width: 50%;
+      border: 1px solid #ece7e7;
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      @include screen("inbetween") {
+        // margin-bottom: 1.5rem;
+        width: 100%;
+      }
     }
     h3 {
-      margin: 0;
+      margin: 0 0 1.5rem 0;
+      color: #8397ab;
     }
   }
 }

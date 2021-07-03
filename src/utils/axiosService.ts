@@ -9,7 +9,7 @@ import axios, {
 import { _getToken, showToast } from "utils";
 
 let that: any;
-export const baseURL = "https://api.example.com"
+export const baseURL = "https://api.paystack.co"
 
 class ApiService {
 	private service: AxiosInstance;

@@ -5,3 +5,4 @@ export * from "./Modal";
 export * from "./Card";
 export * from "./Sidebar";
 export * from "./Table";
+export * from "./Select";

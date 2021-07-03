@@ -14,24 +14,45 @@ import { showToast } from "utils";
 
 
 export const GetAllBanks = () => {
-    return (data: any, successCallback?: any, errorCallback?: any) => (dispatch: Dispatch) => (
+    return (country="nigeria", successCallback?: any, errorCallback?: any) => (dispatch: Dispatch) => (
         dispatch({type: types.GET_BANKS.REQUEST}),
         axiosService.request(
-            'POST',
-			"",
+            'get',
+			`bank?country=${country}`,
 			(res: any) => {
-                const publicKey = res.data
-				dispatch({ type: types.GET_BANKS.SUCCESS, payload: publicKey });
+                //console.log("res--- ", res)
+				dispatch({ type: types.GET_BANKS.SUCCESS, payload: res?.data });
 				successCallback?.();
-				showToast("Public Key Verified", "info");
+				// showToast("Public Key Verified", "info");
 			},
 			(err: any) => {
-                console.error('action error --->', err)
+                // console.error('action error --->', err)
 				dispatch({ type: types.GET_BANKS.FAILURE });
 				showToast(err?.message, "error");
 				errorCallback?.();
 			},
-			data
+		)
+    )
+}
+
+export const VerifyBankAccount = () => {
+    return (accountNumber: any, bankcode: any, successCallback?: any, errorCallback?: any) => (dispatch: Dispatch) => (
+        dispatch({type: types.GET_BANKS.REQUEST}),
+        axiosService.request(
+            'get',
+			`/bank/resolve?account_number=${accountNumber}/&bank_code=${bankcode}`,
+			(res: any) => {
+                //console.log("res--- ", res)
+				dispatch({ type: types.GET_BANKS.SUCCESS, payload: res?.data });
+				successCallback?.();
+				// showToast("Public Key Verified", "info");
+			},
+			(err: any) => {
+                // console.error('action error --->', err)
+				dispatch({ type: types.GET_BANKS.FAILURE });
+				showToast(err?.message, "error");
+				errorCallback?.();
+			}
 		)
     )
 }

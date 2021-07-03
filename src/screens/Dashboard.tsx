@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
-import {Card, Button, Table, Modal} from "components"
+import React, {useState, useEffect} from 'react'
+import {Card, Button, Table, Modal, Input, Select} from "components"
+import {TransferForm} from  "./Transfer.form"
+import {useDispatch} from "react-redux"
 
 interface Props {
     smallNav?: () => void;
@@ -14,7 +16,10 @@ export const sampleHeader = [
     { title: "S/N", key: "sn", component: null },
 ];
 
+
 export const Dashboard = ({smallNav}: Props) => {
+    const dispatch = useDispatch()
+
     const [modal, setModal] = useState({ open: false, modalType: "", modalObj: {} });
     const showModal = (modalObj: string) => {
 		setModal({ open: true, modalType: "modal", modalObj});
@@ -23,7 +28,7 @@ export const Dashboard = ({smallNav}: Props) => {
 	const closeModal = () => {
 		setModal({ open: !modal, modalType: "", modalObj: {} });
 	};
-
+    
 
     return (
         <div className="dashboard">
@@ -47,11 +52,7 @@ export const Dashboard = ({smallNav}: Props) => {
                     <p id="welcome">Hello Emmanuel</p>
                     <p id="here">Welcome back</p>
                 </div>
-                <Button 
-                    text="Transfer Fund" 
-                    className="dash-btn" 
-                    // onClick={}
-                />
+                
             </div>
             <main className="step3">
                 <Card
@@ -70,9 +71,16 @@ export const Dashboard = ({smallNav}: Props) => {
                     icon="/icons/blue-card.svg"
                 />
             </main>
+            
             <section>
-                <h3>Transaction History</h3>
-                <Table header={sampleHeader} data="" />
+                <div className="form-box">
+                <h3>Transfer Form</h3>
+                    <TransferForm />
+                </div>
+                <div className="history">
+                    <h3>Transaction History</h3>
+                    <Table header={sampleHeader} data="" />
+                </div>
             </section>
             <>
                 <Modal 

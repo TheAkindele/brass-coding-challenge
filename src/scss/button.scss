@@ -32,6 +32,10 @@
     cursor: default;
     pointer-events: none;
   }
+  &.form-btn {
+    margin-top: 2rem;
+    width: 100%;
+  }
 }
 #small-btn-left {
   margin-right: 1.5rem;

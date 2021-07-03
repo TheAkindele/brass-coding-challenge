@@ -18,14 +18,18 @@ interface Props {
 }
 
 export const Input: FC<Props> = ({type, value, loading, name, 
-        disabled,placeholder, className, autoComplete, onChange, ...rest}) => {
+        disabled,placeholder, className, autoComplete, onChange, label, ...rest}) => {
 
     return (
-        <input {...rest} 
+        <div className="input-box">
+            {label && <span className="label"> {label} </span>}
+            <input {...rest} 
             type={type} name={name} required autoComplete={autoComplete}
-            placeholder={placeholder} value={value} disabled={disabled} className={className}
+            placeholder={placeholder} value={value} disabled={loading} className={className}
             onChange={onChange}
+            id={name}
         />
+        </div>
     )
 }
 
