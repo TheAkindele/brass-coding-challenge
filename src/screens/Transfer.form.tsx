@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
 import {Input, Select, Button} from "components"
-import {GetAllBanks, VerifyBankAccount, FundTransfer, AddTransaction} from "redux/actions"
+import {GetAllBanks, VerifyBankAccount, AddTransaction} from "redux/actions"
 import {useDispatch, useSelector} from "react-redux"
 import {useFormik} from "formik"
 import {TransferValidationSchema} from "utils/validation"
@@ -10,7 +11,6 @@ export const TransferForm = () => {
     const dispatch = useDispatch()
     const _getAllBanks = GetAllBanks()
     const _verifyBankAccount = VerifyBankAccount()
-    const _fundTransfer = FundTransfer()
     const _addTransaction = AddTransaction()
 
     const initialValues = {
