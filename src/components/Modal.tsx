@@ -3,7 +3,7 @@ import React, {FC, useState, useEffect} from 'react'
 interface Props {
     modalChild?: any;
 	modalOpen?: any;
-	modalClose?: any;
+	modalClose?: () => void;
     className?: string;
     rest?: any;
 }

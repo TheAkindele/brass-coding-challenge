@@ -6,7 +6,7 @@ import axios, {
 	AxiosResponse,
 	AxiosInstance,
 } from "axios";
-import { _getToken, showToast } from "utils";
+import { showToast } from "utils";
 
 let that: any;
 export const baseURL = "https://api.paystack.co"
@@ -16,17 +16,17 @@ class ApiService {
 
 	constructor() {
 		const service = axios.create({
-			baseURL: `${baseURL}/`,
+			baseURL: `${baseURL}`,
 			withCredentials: false,
 			headers: {
-				Accept: "application/json",
+				// Accept: "application/json",
 				"Content-Type": "application/json"
 			},
 		});
 
 		service.interceptors.response.use(this.handleSuccess, this.handleError);
 		service.interceptors.request.use((config: AxiosRequestConfig) => {
-			const token = "FLWSECK_TEST-afdf91f1877be896563f4ddd9ce16058-X";
+			const token = "sk_test_5f6263fed1b76fe87d8f529f0547d393a9d30c9c";
 			if (!token) return config;
 
 			config.headers["Authorization"] = `Bearer ${token}`;

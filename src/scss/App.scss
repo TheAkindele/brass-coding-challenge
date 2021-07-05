@@ -8,7 +8,7 @@
   @include flex(row, nill, nill);
   position: relative;
   .log-sider {
-    width: 21%;
+    width: 15%;
     margin: 0;
     position: fixed;
     top: 0;
@@ -20,8 +20,8 @@
     }
   }
   .log-content {
-    width: 79%;
-    margin-left: 21%;
+    width: 85%;
+    margin-left: 15%;
     position: relative;
     @include screen("inbetween") {
       width: 100%;

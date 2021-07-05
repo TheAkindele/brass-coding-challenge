@@ -21,7 +21,6 @@
       top: 0;
       left: 0;
       right: 0;
-      // width: 100%;
       z-index: 500;
     }
     .logo-box {
@@ -37,7 +36,6 @@
       width: 2.5rem;
       height: 2.5rem;
       cursor: pointer;
-      border: 1px solid black;
       padding: 0.2rem;
       border-radius: 6px;
       @include screen("inbetween") {
@@ -56,12 +54,11 @@
     top: 0;
     left: 0;
     height: 5rem;
-    // padding: 0 5.62rem;
     border-left: 1px solid #ece7e7;
-    margin-left: 21%;
-    width: 79%;
+    margin-left: 15%;
+    width: 85%;
     box-sizing: border-box;
-    padding: 0 5.62rem;
+    padding: 0 3.62rem;
     z-index: 500;
     box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.08);
     background-color: #f8f6f6;
@@ -75,8 +72,6 @@
       z-index: 0;
       width: 100%;
       margin-left: 0;
-      // top: auto;
-      // left: auto;
     }
     p {
       font-style: normal;
@@ -108,7 +103,6 @@
     }
   }
   .step2 {
-    // background-color: pink;
     margin-top: 5rem;
     padding: 2.25rem 5.62rem 1.5rem 5.62rem;
     @include flex(row, space-between, center);
@@ -159,7 +153,6 @@
       margin: 0;
       border-radius: 4px;
       @include screen("inbetween") {
-        // width: 80%;
         margin-top: 1rem;
         height: auto;
         padding: 0.6rem 0;
@@ -169,6 +162,7 @@
     }
   }
   .step3 {
+    margin-top: 6rem;
     @include flex(row, space-between, nill);
     padding: 1rem 5.62rem 2rem 5.62rem;
     @include screen("inbetween") {
@@ -177,8 +171,7 @@
     }
   }
   section {
-    border: 1px solid green;
-    padding: 2rem 5.62rem 2rem 5.62rem;
+    padding: 2rem 3.62rem 2rem 3.62rem;
     @include flex(row, space-between, nill);
     margin-bottom: 3rem;
     @include screen("inbetween") {
@@ -189,25 +182,55 @@
       width: 40%;
       border: 1px solid #ece7e7;
       border-radius: 4px;
-      padding: 0.2rem 0.5rem;
+      padding: 0.5rem 0.5rem 1rem 0.5rem;
       @include screen("inbetween") {
-        margin-bottom: 1.5rem;
+        margin-bottom: 3rem;
         width: 100%;
       }
     }
     .history {
-      width: 50%;
+      width: 55%;
       border: 1px solid #ece7e7;
       border-radius: 4px;
-      padding: 0.2rem 0.5rem;
+      padding: 0.5rem 0.5rem 1rem 0.5rem;
       @include screen("inbetween") {
-        // margin-bottom: 1.5rem;
         width: 100%;
       }
     }
     h3 {
       margin: 0 0 1.5rem 0;
       color: #8397ab;
+    }
+  }
+}
+
+.transaction-details {
+  @include transactionStatus(#00695c, pointer);
+}
+
+.details {
+  width: 100%;
+  padding: 0 1.5rem 1rem 1.5rem;
+  h4 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+  }
+  main {
+    padding: 0;
+    .row {
+      @include flex(column, nill, nill);
+      margin: 0;
+      list-style: none;
+      .list {
+        margin-bottom: 0.8rem;
+        #title {
+          margin-right: 1rem;
+        }
+        #desc {
+          color: #718096;
+        }
+      }
     }
   }
 }

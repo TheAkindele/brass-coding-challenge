@@ -1,13 +1,12 @@
-import React, {useState} from 'react'
-import {Button, Loader} from "components"
+import React from 'react'
 
 interface Props {
     header: any;
     data: any;
+	loading?: boolean;
 }
 
-export const Table = ({header, data}: Props) => {
-    const [loading, setloading] = useState(true)
+export const Table = ({header, data, loading}: Props) => {
 
     return (
         <div className="table-cont">

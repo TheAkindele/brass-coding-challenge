@@ -6,7 +6,7 @@
   width: 100vw;
   height: 100vh;
   @include flex(column, center, center);
-  z-index: 50;
+  z-index: 5000;
   position: fixed;
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@
 
     .close-sign {
       @include flex(row, flex-end, flex-end);
-      margin-bottom: 1rem;
+      // margin-bottom: 1rem;
       padding: 0.8rem 0.7rem;
 
       #close-modal {

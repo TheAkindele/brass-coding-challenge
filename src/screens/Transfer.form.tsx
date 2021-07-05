@@ -1,71 +1,90 @@
 import React, {useState, useEffect} from 'react'
 import {Input, Select, Button} from "components"
-import {GetAllBanks, VerifyBankAccount} from "redux/actions"
+import {GetAllBanks, VerifyBankAccount, FundTransfer, AddTransaction} from "redux/actions"
 import {useDispatch, useSelector} from "react-redux"
 import {useFormik} from "formik"
+import {TransferValidationSchema} from "utils/validation"
 
 
-interface Props {
-    
-}
-
-const selectArr = [
-    {class: "first", amount: "the first"},
-    {class: "second", amount: "the second"},
-    {class: "third", amount: "the third"},
-    {class: "fourth", amount: "fourth"},
-]
-
-export const TransferForm = (props: Props) => {
+export const TransferForm = () => {
     const dispatch = useDispatch()
     const _getAllBanks = GetAllBanks()
     const _verifyBankAccount = VerifyBankAccount()
-
-    const [selectedBank, setBank] = useState("")
+    const _fundTransfer = FundTransfer()
+    const _addTransaction = AddTransaction()
 
     const initialValues = {
         bank: "",
         accountNumber: "",
-        accountName: "",
         amount: "",
-        reason: "",
-        source: ""
     }
+
+    const [form, setForm] = useState({
+        bankCode: "",
+        receiver: "",
+    })
+
+    const {banks, loading, accountDetails} = useSelector((state: any) => state.verification)
 
     useEffect(() => {
         dispatch(_getAllBanks("nigeria"))
     }, [])
+    useEffect(() => {
+        accountDetails?.account_name && setForm({...form, receiver: accountDetails?.account_name})
+    }, [accountDetails, form])
 
-    const {banks, loading} = useSelector((state: any) => state.verification)
-    console.log("all banks=== ", banks)
+    const verifyAccount = (acc: any) => {
+        formik.values?.bank && 
+        dispatch(_verifyBankAccount({accountNumber: acc, bankCode: formik.values?.bank}))
+    }
 
-    // const verifyAccount = () => {
-    //     selectedBank !== "" && 
-    //     dispatch(_verifyBankAccount())
-    // }
 
-    const handleSubmit = () => {}
+    const handleSubmit = () => {
+        // unfortunately, paystack does not allow for a third party payouts 
+        // as a starter business which is the account I registered as so I
+        // had to improvise a means to make it work..
+        
+        dispatch(_addTransaction(data))
+    }
     
     const formik = useFormik({
 		initialValues,
 		onSubmit: handleSubmit,
-		// validationSchema: AddAdminSchema,
+		validationSchema: TransferValidationSchema,
 		validateOnChange: false,
 	});
+    const { setFieldValue } = formik;
+
+    const getBankname = () => {
+        const bank = banks?.find((bank: any) => bank.code === formik.values.bank)
+        return bank?.name
+    }
+
+    const data = {
+        bankCode: formik?.values?.bank,
+        bankName: getBankname(),
+        accountNumber: formik?.values?.accountNumber,
+        accountName: formik.values?.accountName,
+        amount: formik?.values?.amount,
+        receiver: form?.receiver,
+    }
 
     return (
-        <form>
+        <form >
             <Select
-                name="users"
+                name="bank"
                 label="Select User"
                 placeholder="Select Bank"
-                onChange={(e: any) => setBank(e.target.value)}
                 options={banks && banks?.map((bank: any, i: any) => ({
                     value: bank?.code,
                     label: bank?.name
                 }))}
+                onChange={(e: any) => {
+                    setFieldValue("bank", e.target.value);
+                }}
                 id="option"
-                // loading={loading}
+                disabled={loading}
+                errorMessage={formik?.errors?.bank}
             />
 
             <Input
@@ -73,16 +92,21 @@ export const TransferForm = (props: Props) => {
                 placeholder="Enter account number"
                 name="accountNumber"
                 label="Account Number"
-                onChange={(e: any) => e.target.value}
-                // loading={loading}
+                onChange={(e: any) => {
+                    const account = e.target.value;
+                    setFieldValue("accountNumber", account);
+                    account.length === 10 && verifyAccount(account);
+                }}
+                disabled={loading}
+                errorMessage={formik?.errors?.accountNumber}
             />
 
             <Input
                 type="text"
                 placeholder="Account Name"
-                name="accountNumber"
+                name="accountName"
                 label="Receiver's Name"
-                value="Aderayo Tijanni"
+                value={accountDetails?.account_name}
                 disabled
             />
 
@@ -90,20 +114,22 @@ export const TransferForm = (props: Props) => {
                 type="number"
                 placeholder="Enter an amount"
                 name="amount"
-                label="Transfer Amount "
-            />
-
-            <Input
-                type="text"
-                placeholder="Enter a reason"
-                name="reason"
-                label="reason"
+                label="Transfer Amount"
+                onChange={(e: any) => {
+                    setFieldValue("amount", e.target.value);
+                }}
+                min={'100'}
+                max={"10000000"}
+                disabled={loading}
+                errorMessage={formik?.errors?.amount}
             />
 
             <Button 
+                type="submit"
                 text="Make Transfer" 
                 className="form-btn" 
-                 // onClick={}
+                loading={loading}
+                onClick={formik.handleSubmit}
             />
         </form>
     )

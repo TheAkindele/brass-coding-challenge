@@ -11,10 +11,10 @@ interface Props {
     id?: string;
     disabled?: boolean;
     loading?: boolean;
+    errorMessage?: string;
 }
-// (e: any) => setSelect(e.target.value)
 
-export const Select = ({className, options, name, onChange, label, placeholder, id, disabled, loading}: Props) => {
+export const Select = ({className, options, errorMessage, name, onChange, label, placeholder, id, disabled, loading}: Props) => {
 
     return (
         <div className={`select-box ${className}`}>
@@ -22,14 +22,13 @@ export const Select = ({className, options, name, onChange, label, placeholder, 
             <select name={name} id={name} 
                 onChange={onChange}
             >
-                {/* {options && <option key={options.i} value={options.value}>{options.label}</option>} */}
-                {placeholder && 
-                <option value="" disabled selected id={id}>{placeholder}</option>
-                }
                 {options?.map((item: any, i: any) => (
                     <option key={i} value={item.value} id={id} disabled={loading}>{item.label}</option>
                 ))}
             </select>
+            {errorMessage && (
+				<span className="form-error">{errorMessage}</span>
+			)}
         </div>
     )
 }

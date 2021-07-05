@@ -25,19 +25,17 @@
   }
 
   .step1 {
-    // height: 10%;
-    // padding: 1rem 0 0 0; // 1.9rem
     height: 5rem;
-    // height: auto;
     background-color: #ffffff;
-    @include flex(column, center, center);
+    @include flex(column, center, nill);
+    padding-left: 1rem;
     border-bottom: 1px solid rgb(236, 231, 231);
     margin: 0 0 2rem 0;
     #logo {
-      width: 60%;
-      height: 2rem;
+      width: 50%;
+      height: 1rem;
       @include screen("inbetween") {
-        height: 1.5rem;
+        height: 1rem;
       }
     }
     .name-box {
@@ -81,7 +79,7 @@
   }
   .menu-list {
     list-style: none;
-    padding-left: 2rem;
+    padding-left: 1rem;
     &.down {
       margin-top: 10rem;
       @include screen("inbetween") {

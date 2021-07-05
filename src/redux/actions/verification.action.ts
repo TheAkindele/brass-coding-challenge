@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 
 import * as types from "../action.types"
 import { Dispatch } from "redux";
@@ -5,28 +6,18 @@ import  axiosService  from 'utils/axiosService';
 import { showToast } from "utils";
 
 
-// BElow are the flutterwave api endpoints needed
-// The flutterwave base url is "https://api.flutterwave.com/v3""
-// To get all Nigerian banks - '{{BASE_API_URL}}/banks/NG'
-// To validate account number - https://api.flutterwave.com/v3/accounts/resolve
-// body params---- account_number, account_bank, this means bank code
-// To make transfer - {Base_url}/transfers
-
-
 export const GetAllBanks = () => {
     return (country="nigeria", successCallback?: any, errorCallback?: any) => (dispatch: Dispatch) => (
         dispatch({type: types.GET_BANKS.REQUEST}),
         axiosService.request(
             'get',
-			`bank?country=${country}`,
+			`/bank?country=${country}`,
 			(res: any) => {
-                //console.log("res--- ", res)
 				dispatch({ type: types.GET_BANKS.SUCCESS, payload: res?.data });
 				successCallback?.();
-				// showToast("Public Key Verified", "info");
+				showToast(res?.message, "info");
 			},
 			(err: any) => {
-                // console.error('action error --->', err)
 				dispatch({ type: types.GET_BANKS.FAILURE });
 				showToast(err?.message, "error");
 				errorCallback?.();
@@ -36,25 +27,51 @@ export const GetAllBanks = () => {
 }
 
 export const VerifyBankAccount = () => {
-    return (accountNumber: any, bankcode: any, successCallback?: any, errorCallback?: any) => (dispatch: Dispatch) => (
-        dispatch({type: types.GET_BANKS.REQUEST}),
+    return (accountDetail: any, successCallback?: any, errorCallback?: any) => (dispatch: Dispatch) => (
+        dispatch({type: types.VERIFY_ACCOUNT.REQUEST}),
         axiosService.request(
             'get',
-			`/bank/resolve?account_number=${accountNumber}/&bank_code=${bankcode}`,
+			`/bank/resolve?account_number=${accountDetail?.accountNumber}&bank_code=${accountDetail?.bankCode}`,
 			(res: any) => {
-                //console.log("res--- ", res)
-				dispatch({ type: types.GET_BANKS.SUCCESS, payload: res?.data });
+				dispatch({ type: types.VERIFY_ACCOUNT.SUCCESS, payload: res?.data });
 				successCallback?.();
-				// showToast("Public Key Verified", "info");
+				showToast(res?.message, "info");
 			},
 			(err: any) => {
-                // console.error('action error --->', err)
-				dispatch({ type: types.GET_BANKS.FAILURE });
+				dispatch({ type: types.VERIFY_ACCOUNT.FAILURE });
 				showToast(err?.message, "error");
 				errorCallback?.();
 			}
 		)
     )
+}
+
+
+export const FundTransfer = () => {
+    return (transferData: any, successCallback?: any, errorCallback?: any) => (dispatch: Dispatch) => (
+        dispatch({type: types.TRANSFER_FUND.REQUEST}),
+        axiosService.request(
+            'get',
+			`/bank`,
+			(res: any) => {
+				dispatch({ type: types.TRANSFER_FUND.SUCCESS, payload: res?.data });
+				successCallback?.();
+				showToast(res?.message, "info");
+			},
+			(err: any) => {
+				dispatch({ type: types.TRANSFER_FUND.FAILURE });
+				showToast(err?.message, "error");
+				errorCallback?.();
+			}
+		)
+    )
+}
+
+export const AddTransaction = () => {
+	return (transaction: any) => (dispatch: Dispatch) => (
+		dispatch({type: types.ADD_TRANSACTION.REQUEST}),
+		dispatch({type: types.ADD_TRANSACTION.SUCCESS, payload: transaction})
+	) 
 }
 
 

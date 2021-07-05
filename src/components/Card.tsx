@@ -5,13 +5,10 @@ interface Props {
     balance?: number;
     accountType?: string;
     bankname: string;
-    accountNumber?: number;
+    accountNumber?: any;
     icon?: string;
     type?: string;
 }
-
-// blue card color code #2196F3
-// green card color code #21F3B8
 
 export const Card = ({balance, accountType, bankname, accountNumber, icon, type}: Props) => {
     return (

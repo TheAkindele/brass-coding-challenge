@@ -1,34 +1,43 @@
-import React, {useState, useEffect} from 'react'
-import {Card, Button, Table, Modal, Input, Select} from "components"
+import React, {useState} from 'react'
+import {Table, Modal} from "components"
 import {TransferForm} from  "./Transfer.form"
-import {useDispatch} from "react-redux"
+import {useSelector} from "react-redux"
+import {formatCurrency} from "utils"
+import {Details} from "./Details"
 
 interface Props {
     smallNav?: () => void;
 }
 
 
-export const sampleHeader = [
+export const tableHeader = [
 	{ title: "S/N", key: "sn", component: null },
-    { title: "Name", key: "name", component: null },
-    { title: "UserId", key: "id", component: null },
-    { title: "S/N", key: "sn", component: null },
-    { title: "S/N", key: "sn", component: null },
+    { title: "Receiver", key: "receiver", component: null },
+    { title: "Amount", key: "amount", component: ({item}: any) => (
+        <span>{formatCurrency(item?.toString() || "0", "NGN")}</span>
+    ) },
+    { title: "Bank", key: "bank", component: null },
+    {title: "Account", key: "account", component: null},
+    {title: "Details", key: "details", component: ({ data: { onClick } }: any) => (
+        <button onClick={onClick} className="transaction-details">
+            Details
+        </button>
+    ),}
 ];
 
 
 export const Dashboard = ({smallNav}: Props) => {
-    const dispatch = useDispatch()
-
     const [modal, setModal] = useState({ open: false, modalType: "", modalObj: {} });
-    const showModal = (modalObj: string) => {
+    const showModal = (modalObj: any) => {
 		setModal({ open: true, modalType: "modal", modalObj});
 	};
 
 	const closeModal = () => {
 		setModal({ open: !modal, modalType: "", modalObj: {} });
 	};
-    
+
+    const {transactions, loading} = useSelector((state: any) => state.verification)
+
 
     return (
         <div className="dashboard">
@@ -52,25 +61,7 @@ export const Dashboard = ({smallNav}: Props) => {
                     <p id="welcome">Hello Emmanuel</p>
                     <p id="here">Welcome back</p>
                 </div>
-                
             </div>
-            <main className="step3">
-                <Card
-                    balance={50002974}
-                    accountNumber={1234567890}
-                    bankname={"JogbJogbo bank"}
-                    accountType="Savings"
-                    icon="/icons/green-card.svg"
-                    type="left"
-                />
-                <Card
-                    balance={929704}
-                    accountNumber={1234567890}
-                    bankname={"Alaye Bank"}
-                    accountType="Current"
-                    icon="/icons/blue-card.svg"
-                />
-            </main>
             
             <section>
                 <div className="form-box">
@@ -79,18 +70,29 @@ export const Dashboard = ({smallNav}: Props) => {
                 </div>
                 <div className="history">
                     <h3>Transaction History</h3>
-                    <Table header={sampleHeader} data="" />
+                    <Table 
+                        header={tableHeader}
+                        data={transactions.length && [...transactions]?.map((item: any, i: any) => ({
+                            ...item,
+                            sn: ++i,
+                            receiver: item?.receiver,
+                            amount: item?.amount,
+                            bank: item?.bankName,
+                            account: item?.accountNumber,
+                            onClick: () => showModal(item)
+                        }))} 
+                        loading={loading}
+                    />
                 </div>
             </section>
             <>
                 <Modal 
                     modalOpen={modal.open}
                     modalClose={closeModal}
-                    // modalChild={
-                    //     modal.modalType === "modal" && <WebcamCapture 
-                    //     modalClose={closeModal} modalContent={modal.modalObj} />
-                    // }
-                    className="verify-modal"
+                    modalChild={
+                        modal.modalType === "modal" && <Details 
+                        modalClose={closeModal} modalContent={modal.modalObj} />
+                    }
                 />
             </>
         </div>

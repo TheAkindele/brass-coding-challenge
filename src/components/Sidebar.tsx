@@ -1,8 +1,6 @@
-import React, {useState} from "react"
+import React from "react"
 
 export const Sidebar = ({smallNav}: any) => {
-    // const [options , setOptions] = useState(false)
-
     return (
         <div className="sider">
             <div id="menu-box"
@@ -13,7 +11,6 @@ export const Sidebar = ({smallNav}: any) => {
             <div className="step1">
                 <img src="/icons/brass-logo.png" alt="icon" id="logo"/>
                 <div className="name-box">
-                    {/* <p id="main">Brass Banking</p> */}
                 </div>
             </div>
             <div className="step2">
@@ -24,7 +21,7 @@ export const Sidebar = ({smallNav}: any) => {
                     </li>
                     <li className="list">
                         <img src="/icons/management.svg" alt="icon" id="list" />
-                        <p>Management</p>
+                        <p>Transfers</p>
                     </li>
                     <li className="list">
                         <img src="/icons/management.svg" alt="icon" id="list" />
