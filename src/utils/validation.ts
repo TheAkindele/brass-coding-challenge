@@ -9,5 +9,7 @@ export const TransferValidationSchema = (): {} => {
 		amount: Yup.number()
 			.required("Amount is required")
             .positive("Amount must be a positive number")
+			.min(100)
+			.max(10000000)
 	});
 };
